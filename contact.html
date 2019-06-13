@@ -134,12 +134,12 @@
                     </p>
 
                     <!-- FORM -->
-                    <form id="contactForm" class="lks-form-v1 pt-2" method="POST">
+                    <form action="//formspree.io/firas.mrad@esprit.tn" id="contactForm" class="lks-form-v1 pt-2" method="POST">
                         <input class="lks-input d-block w-100 my-2" name="name" id="name" type="text" placeholder="Votre nom">
                         <input class="lks-input d-block w-100 my-2" name="email" id="email" type="email" placeholder="Adresse Email">
                         <input class="lks-input d-block w-100 my-2" name="subject" id="subject" type="text" placeholder="Sujet">
                         <textarea class="lks-textarea d-block w-100 my-2" name="message" id="message" placeholder="Votre Message"></textarea>
-                        <button class="d-block w-100 my-2 btn btn-black py-2" onclick="sendmail()" type="button">
+                        <button class="d-block w-100 my-2 btn btn-black py-2"  type="button">
                             <i class="fa fa-send mr-2"></i> ENVOYER</button>
                     </form>
 					<br>
@@ -188,7 +188,7 @@
 
     gtag('config', 'UA-118810962-1');
 	
-	function sendmail(){
+	/*function sendmail(){
 	
             var email = $("#email").val();
             var name = $("#name").val();
@@ -234,7 +234,7 @@
                     $('#contactForm').trigger("reset");
                 },
             })
-	}
+	}*/
     </script>
 
 
