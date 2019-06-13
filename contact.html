@@ -58,7 +58,7 @@
         <div class="container-fluid">
 
             <!-- NAVBAR BRAND -->
-            <a href="#" class="navbar-brand btn btn-black">Recruter moi</a>
+            <a href="contact.html" class="navbar-brand btn btn-black">Recruter moi</a>
             <!-- END OF NAVBAR BRAND -->
 
             <!-- MOBILE TOGGLE BAR -->
@@ -134,14 +134,16 @@
                     </p>
 
                     <!-- FORM -->
-                    <form action="https://themes.himasrafeek.com/lks-resume/Light-version-1.0/contact.php" method="POST" class="lks-form-v1 pt-2">
-                        <input class="lks-input d-block w-100 my-2" name="name" type="text" placeholder="Votre nom">
-                        <input class="lks-input d-block w-100 my-2" name="email" type="email" placeholder="Adresse Email">
-                        <input class="lks-input d-block w-100 my-2" name="subject" type="text" placeholder="Sujet">
+                    <form novalidate id="contactForm" class="lks-form-v1 pt-2">
+                        <input class="lks-input d-block w-100 my-2" name="name" id="name" type="text" placeholder="Votre nom">
+                        <input class="lks-input d-block w-100 my-2" name="email" id="email" type="email" placeholder="Adresse Email">
+                        <input class="lks-input d-block w-100 my-2" name="subject" id="subject" type="text" placeholder="Sujet">
                         <textarea class="lks-textarea d-block w-100 my-2" name="message" id="message" placeholder="Votre Message"></textarea>
-                        <button class="d-block w-100 my-2 btn btn-black py-2" name="contact">
+                        <button class="d-block w-100 my-2 btn btn-black py-2" name="contact" onclick="sendmail()">
                             <i class="fa fa-send mr-2"></i> ENVOYER</button>
                     </form>
+					<br>
+					<div id="success"></div>
 
                 </div>
             </div>
@@ -185,6 +187,54 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-118810962-1');
+	
+	sendmail(){
+	
+            var email = $("#email").val();
+            var name = $("#name").val();
+			var subject = $("#subject").val();
+            var message = $("#message").val();
+            var firstName = name; // For Success/Failure Message
+            // Check for white space in name for Success/Fail message
+            if (firstName.indexOf(' ') >= 0) {
+                firstName = name.split(' ').slice(0, -1).join(' ');
+            }
+            $.ajax({
+                url: "//formspree.io/firas.mrad@esprit.tn",
+                type: "POST",
+				dataType: "json",
+                data: {
+                    name: name,
+                    subject: subject,
+                    email: email,
+                    message: message
+                },
+                cache: false,
+                success: function() {
+                    // Success message
+                    $('#success').html("<div class='alert alert-success'>");
+                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                        .append("</button>");
+                    $('#success > .alert-success')
+                        .append("<strong>Your message has been sent. </strong>");
+                    $('#success > .alert-success')
+                        .append('</div>');
+
+                    //clear all fields
+                    $('#contactForm').trigger("reset");
+                },
+                error: function() {
+                    // Fail message
+                    $('#success').html("<div class='alert alert-danger'>");
+                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                        .append("</button>");
+                    $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
+                    $('#success > .alert-danger').append('</div>');
+                    //clear all fields
+                    $('#contactForm').trigger("reset");
+                },
+            })
+	}
     </script>
 
 
