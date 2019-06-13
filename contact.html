@@ -134,12 +134,12 @@
                     </p>
 
                     <!-- FORM -->
-                    <form novalidate id="contactForm" class="lks-form-v1 pt-2">
+                    <form id="contactForm" class="lks-form-v1 pt-2" method="POST">
                         <input class="lks-input d-block w-100 my-2" name="name" id="name" type="text" placeholder="Votre nom">
                         <input class="lks-input d-block w-100 my-2" name="email" id="email" type="email" placeholder="Adresse Email">
                         <input class="lks-input d-block w-100 my-2" name="subject" id="subject" type="text" placeholder="Sujet">
                         <textarea class="lks-textarea d-block w-100 my-2" name="message" id="message" placeholder="Votre Message"></textarea>
-                        <button class="d-block w-100 my-2 btn btn-black py-2" name="contact" onclick="sendmail()">
+                        <button class="d-block w-100 my-2 btn btn-black py-2" name="contact" onclick="sendmail()" type="button">
                             <i class="fa fa-send mr-2"></i> ENVOYER</button>
                     </form>
 					<br>
